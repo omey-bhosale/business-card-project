@@ -1,0 +1,55 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 px-4 py-10">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-2xl">
+      <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">Create Your Business Profile</h2>
+  
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Left column -->
+        <div class="space-y-4">
+          <input class="input" type="text" formControlName="businessName" placeholder="Business Name" />
+          <textarea class="input" rows="3" formControlName="description" placeholder="Description"></textarea>
+          <input class="input" type="tel" formControlName="phone" placeholder="Phone Number" />
+          <input class="input" type="email" formControlName="email" placeholder="Email" />
+          <input class="input" type="text" formControlName="address" placeholder="Address" />
+          <input class="input" type="text" formControlName="googleMapLink" placeholder="Google Map Link" />
+        </div>
+  
+        <!-- Right column -->
+        <div class="space-y-4">
+          <input class="input" type="text" formControlName="facebookUrl" placeholder="Facebook URL" />
+          <input class="input" type="text" formControlName="instagramUrl" placeholder="Instagram URL" />
+          <input class="input" type="text" formControlName="linkedinUrl" placeholder="LinkedIn URL" />
+          <input class="input" type="text" formControlName="youtubeUrl" placeholder="YouTube URL" />
+  
+          <!-- Logo Upload -->
+          <label class="block font-medium text-gray-700">Upload Logo</label>
+          <input type="file" (change)="onFileSelected($event, 'logo')" class="file-input" />
+  
+          <!-- QR Upload -->
+          <label class="block font-medium text-gray-700">Upload Payment QR Code</label>
+          <input type="file" (change)="onFileSelected($event, 'qr')" class="file-input" />
+        </div>
+  
+        <!-- Submit + Preview Buttons -->
+        <div class="col-span-1 md:col-span-2 flex justify-between mt-4">
+          <button type="button" (click)="preview()" class="btn-secondary">Preview</button>
+          <button type="submit" [disabled]="!profileForm.valid" class="btn-primary">Submit</button>
+        </div>
+      </form>
+  
+      <!-- Preview -->
+      <div *ngIf="previewData" class="mt-10 bg-gray-50 p-6 rounded-xl shadow-md">
+        <h3 class="text-xl font-bold mb-4">Preview</h3>
+        <div class="flex gap-6 flex-col md:flex-row">
+          <img [src]="previewData.logoUrl" class="h-32 w-32 rounded-xl border object-contain" *ngIf="previewData.logoUrl" />
+          <div class="flex-1">
+            <p><strong>{{ previewData.businessName }}</strong></p>
+            <p>{{ previewData.description }}</p>
+            <p>📞 {{ previewData.phone }} | ✉️ {{ previewData.email }}</p>
+            <p>📍 {{ previewData.address }}</p>
+          </div>
+          <img [src]="previewData.paymentQrUrl" class="h-32 w-32 rounded-xl border object-contain" *ngIf="previewData.paymentQrUrl" />
+        </div>
+      </div>
+    </div>
+  </div>
+  

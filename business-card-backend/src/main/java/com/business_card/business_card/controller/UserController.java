@@ -10,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -70,24 +74,6 @@ public class UserController {
                 )));
     }
 
-//    @PostMapping("/login-otp")
-//    public ResponseEntity<?> loginWithOtp(@RequestBody OtpLoginRequest request) {
-//        System.out.println("login-otp called for phone: " + request.getPhone());
-//        return userService.loginWithOtp(request.getPhone(), request.getOtp())
-//                .map(user -> {
-//                    user.setOtp(null); // Optional: clear OTP after login
-//                    userRepository.save(user);
-//                    return ResponseEntity.ok(Map.of(
-//                            "token", jwtUtil.generateToken(user.getPhone()),
-//                            "message", "OTP login successful",
-//                            "user", user
-//                    ));
-//                })
-//                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
-//                        "message", "Invalid OTP or phone Number"
-//                )));
-//    }
-
     public Optional<User> loginWithOtp(String phone, String otp) {
         return userRepository.findByPhone(phone)
                 .filter(user -> otp.equals(user.getOtp()))
@@ -96,6 +82,20 @@ public class UserController {
                     userRepository.save(user);
                     return user;
                 });
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+        String uploadDir = "uploads/";
+        File uploadPath = new File(uploadDir);
+        if (!uploadPath.exists()) uploadPath.mkdirs();
+
+        String filePath = uploadDir + UUID.randomUUID() + "_" + file.getOriginalFilename();
+        File dest = new File(filePath);
+        file.transferTo(dest);
+
+        String url = "http://localhost:8080/" + filePath; // or serve from static location
+        return ResponseEntity.ok(Map.of("url", url));
     }
 
 
