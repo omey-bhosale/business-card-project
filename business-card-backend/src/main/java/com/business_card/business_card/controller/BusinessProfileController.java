@@ -39,4 +39,12 @@ public class BusinessProfileController {
         List<BusinessProfile> profiles = profileService.getProfiles(phone);
         return ResponseEntity.ok(profiles);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProfileById(@PathVariable Long id, HttpServletRequest request) {
+        String phone = extractPhone(request);
+        BusinessProfile profile = profileService.getProfileById(id, phone);
+        return ResponseEntity.ok(profile);
+    }
+
 }

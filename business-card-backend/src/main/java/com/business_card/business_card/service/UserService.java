@@ -96,6 +96,9 @@ public class UserService {
         return Optional.of(user);
     }
 
+    public Optional<User> findByPhone(String phone) {
+        return userRepository.findByPhone(phone);
+    }
 
 
 }

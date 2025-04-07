@@ -38,4 +38,17 @@ public class BusinessProfileService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return profileRepository.findByUser(user);
     }
+
+    public BusinessProfile getProfileById(Long id, String phone) {
+        BusinessProfile profile = profileRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+
+        // Ensure the profile belongs to the logged-in user
+        if (!profile.getUser().getPhone().equals(phone)) {
+            throw new RuntimeException("Unauthorized access");
+        }
+
+        return profile;
+    }
+
 }

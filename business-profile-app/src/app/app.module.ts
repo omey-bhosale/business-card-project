@@ -9,6 +9,7 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateProfileComponent } from './pages/create-profile/create-profile.component';
+import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CreateProfileComponent } from './pages/create-profile/create-profile.co
     SignUpComponent,
     SignInComponent,
     DashboardComponent,
-    CreateProfileComponent
+    CreateProfileComponent,
+    ViewProfileComponent
   ],
   imports: [
     BrowserModule,

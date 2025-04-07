@@ -11,15 +11,27 @@ import { Router } from '@angular/router';
 export class CreateProfileComponent {
   profileForm: FormGroup;
   previewData: any = null;
+  defaultLogo: string = 'https://via.placeholder.com/100x100.png?text=Logo';
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private auth: AuthService, private router: Router) {
+
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.profileForm = this.fb.group({
       businessName: ['', Validators.required],
+      tagline: [''],
       description: ['', Validators.required],
       phone: ['', Validators.required],
+      whatsapp: [''],
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
       googleMapLink: [''],
+      googleReviewLink: [''],
+      appDownloadLink: [''],
+      website: [''],
       facebookUrl: [''],
       instagramUrl: [''],
       linkedinUrl: [''],
@@ -31,15 +43,31 @@ export class CreateProfileComponent {
 
   onFileSelected(event: any, type: 'logo' | 'qr') {
     const file = event.target.files[0];
+
+    if (!file) return;
+    if (!['image/png', 'image/jpeg'].includes(file.type)) {
+      alert('Only JPG and PNG files are allowed.');
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert('File size must be under 2MB.');
+      return;
+    }
+
     const formData = new FormData();
     formData.append('file', file);
 
-    this.http.post<any>('http://localhost:8080/api/upload', formData).subscribe({
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.auth.getToken()}`);
+
+    this.http.post<any>('http://localhost:8080/api/users/upload', formData, { headers }).subscribe({
       next: (res) => {
-        this.profileForm.get(type === 'logo' ? 'logoUrl' : 'paymentQrUrl')?.setValue(res.url);
+        const controlName = type === 'logo' ? 'logoUrl' : 'paymentQrUrl';
+        this.profileForm.get(controlName)?.setValue(res.url);
       },
       error: (err) => {
-        console.error('Upload error:', err);
+        console.error('Upload failed:', err);
+        alert('Upload failed. Check console.');
       }
     });
   }

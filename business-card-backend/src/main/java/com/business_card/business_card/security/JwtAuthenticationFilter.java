@@ -1,5 +1,8 @@
 package com.business_card.business_card.security;
 
+import com.business_card.business_card.model.CustomUserPrincipal;
+import com.business_card.business_card.model.User;
+import com.business_card.business_card.service.UserService;
 import com.business_card.business_card.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,12 +17,16 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Optional;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    private UserService userService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -30,18 +37,33 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
+
             if (jwtUtil.validateToken(token)) {
                 String phone = jwtUtil.extractPhone(token);
 
-                // Set Authentication with dummy authority
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(phone, null, Collections.emptyList());
+                Optional<User> userOpt = userService.findByPhone(phone);
+                if (userOpt.isPresent()) {
+                    User user = userOpt.get();
 
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+                    // ✅ Create proper principal
+                    CustomUserPrincipal principal = new CustomUserPrincipal(user.getPhone(), user.getPassword());
+
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
+
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                    System.out.println("🧪 Token = " + token);
+                    System.out.println("🧪 Extracted Phone = " + phone);
+                    System.out.println("🧪 Is Auth Set? " + SecurityContextHolder.getContext().getAuthentication());
+
+
+                    System.out.println("✅ Authenticated user in filter: " + user.getPhone());
+                }
             }
         }
 
         filterChain.doFilter(request, response);
     }
+
 }

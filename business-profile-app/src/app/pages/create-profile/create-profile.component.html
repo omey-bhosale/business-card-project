@@ -1,55 +1,103 @@
-<div class="min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 px-4 py-10">
-    <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-2xl">
-      <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">Create Your Business Profile</h2>
+<div class="container mx-auto px-4 py-6 max-w-5xl">
+    <h2 class="text-2xl font-bold mb-6 text-center">Create Your Business Profile</h2>
   
-      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Left column -->
-        <div class="space-y-4">
-          <input class="input" type="text" formControlName="businessName" placeholder="Business Name" />
-          <textarea class="input" rows="3" formControlName="description" placeholder="Description"></textarea>
-          <input class="input" type="tel" formControlName="phone" placeholder="Phone Number" />
-          <input class="input" type="email" formControlName="email" placeholder="Email" />
-          <input class="input" type="text" formControlName="address" placeholder="Address" />
-          <input class="input" type="text" formControlName="googleMapLink" placeholder="Google Map Link" />
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="grid gap-4 md:grid-cols-2">
+      <!-- Business Info -->
+      <div>
+        <input formControlName="businessName" placeholder="Business Name" class="input" />
+        <p *ngIf="profileForm.get('businessName')?.touched && profileForm.get('businessName')?.invalid" class="error">Business name is required.</p>
+      </div>
+  
+      <div>
+        <input formControlName="tagline" placeholder="Tagline / Slogan" class="input" />
+      </div>
+  
+      <div class="md:col-span-2">
+        <textarea formControlName="description" placeholder="Description" class="input h-24 resize-none"></textarea>
+        <p *ngIf="profileForm.get('description')?.touched && profileForm.get('description')?.invalid" class="error">Description is required.</p>
+      </div>
+  
+      <!-- Contact Info -->
+      <div>
+        <input formControlName="phone" placeholder="Phone Number" class="input" />
+        <p *ngIf="profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid" class="error">Phone number is required.</p>
+      </div>
+  
+      <div>
+        <input formControlName="whatsapp" placeholder="WhatsApp Number" class="input" />
+      </div>
+  
+      <div>
+        <input formControlName="email" placeholder="Email" type="email" class="input" />
+        <p *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid" class="error">Valid email is required.</p>
+      </div>
+  
+      <div>
+        <input formControlName="address" placeholder="Address" class="input" />
+        <p *ngIf="profileForm.get('address')?.touched && profileForm.get('address')?.invalid" class="error">Address is required.</p>
+      </div>
+  
+      <!-- Online presence -->
+      <input formControlName="website" placeholder="Website URL" class="input" />
+      <input formControlName="googleMapLink" placeholder="Google Map Link" class="input" />
+      <input formControlName="googleReviewLink" placeholder="Google Review Link" class="input" />
+      <input formControlName="facebookUrl" placeholder="Facebook URL" class="input" />
+      <input formControlName="instagramUrl" placeholder="Instagram URL" class="input" />
+      <input formControlName="linkedinUrl" placeholder="LinkedIn URL" class="input" />
+      <input formControlName="youtubeUrl" placeholder="YouTube URL" class="input" />
+      <input formControlName="appDownloadLink" placeholder="App Store / Play Store Link" class="input" />
+      <input formControlName="paymentGateway" placeholder="Payment Gateway Link" class="input" />
+  
+      <!-- Uploads -->
+      <div>
+        <label class="font-semibold text-sm mb-1 block">Upload Logo</label>
+        <input type="file" (change)="onFileSelected($event, 'logo')" class="input" />
+      </div>
+      <div>
+        <label class="font-semibold text-sm mb-1 block">Upload QR Code</label>
+        <input type="file" (change)="onFileSelected($event, 'qr')" class="input" />
+      </div>
+  
+      <!-- Action Buttons -->
+      <div class="md:col-span-2 flex justify-between items-center mt-4">
+        <button type="submit" [disabled]="!profileForm.valid" class="btn-primary">Create Profile</button>
+      </div>
+    </form>
+  
+    <!-- Live Preview -->
+    <div class="mt-10">
+      <h3 class="text-lg font-bold mb-4">Live Preview</h3>
+      <div class="bg-white shadow-lg rounded-xl p-6 text-center max-w-lg mx-auto">
+        <img [src]="profileForm.value.logoUrl || defaultLogo" alt="Logo" class="w-20 h-20 rounded-full mx-auto mb-3 border shadow object-cover" />
+        <h2 class="text-xl font-bold">{{ profileForm.value.businessName || 'Business Name' }}</h2>
+        <p class="text-sm text-gray-600">{{ profileForm.value.tagline }}</p>
+        <p class="text-sm text-gray-500 mb-4">{{ profileForm.value.description }}</p>
+  
+        <div class="flex justify-center gap-4 text-lg text-gray-600 mb-3">
+          <a *ngIf="profileForm.value.phone" [href]="'tel:' + profileForm.value.phone" title="Call"><i class="fas fa-phone"></i></a>
+          <a *ngIf="profileForm.value.email" [href]="'mailto:' + profileForm.value.email" title="Email"><i class="fas fa-envelope"></i></a>
+          <a *ngIf="profileForm.value.whatsapp" [href]="'https://wa.me/' + profileForm.value.whatsapp" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
   
-        <!-- Right column -->
-        <div class="space-y-4">
-          <input class="input" type="text" formControlName="facebookUrl" placeholder="Facebook URL" />
-          <input class="input" type="text" formControlName="instagramUrl" placeholder="Instagram URL" />
-          <input class="input" type="text" formControlName="linkedinUrl" placeholder="LinkedIn URL" />
-          <input class="input" type="text" formControlName="youtubeUrl" placeholder="YouTube URL" />
-  
-          <!-- Logo Upload -->
-          <label class="block font-medium text-gray-700">Upload Logo</label>
-          <input type="file" (change)="onFileSelected($event, 'logo')" class="file-input" />
-  
-          <!-- QR Upload -->
-          <label class="block font-medium text-gray-700">Upload Payment QR Code</label>
-          <input type="file" (change)="onFileSelected($event, 'qr')" class="file-input" />
-        </div>
-  
-        <!-- Submit + Preview Buttons -->
-        <div class="col-span-1 md:col-span-2 flex justify-between mt-4">
-          <button type="button" (click)="preview()" class="btn-secondary">Preview</button>
-          <button type="submit" [disabled]="!profileForm.valid" class="btn-primary">Submit</button>
-        </div>
-      </form>
-  
-      <!-- Preview -->
-      <div *ngIf="previewData" class="mt-10 bg-gray-50 p-6 rounded-xl shadow-md">
-        <h3 class="text-xl font-bold mb-4">Preview</h3>
-        <div class="flex gap-6 flex-col md:flex-row">
-          <img [src]="previewData.logoUrl" class="h-32 w-32 rounded-xl border object-contain" *ngIf="previewData.logoUrl" />
-          <div class="flex-1">
-            <p><strong>{{ previewData.businessName }}</strong></p>
-            <p>{{ previewData.description }}</p>
-            <p>📞 {{ previewData.phone }} | ✉️ {{ previewData.email }}</p>
-            <p>📍 {{ previewData.address }}</p>
-          </div>
-          <img [src]="previewData.paymentQrUrl" class="h-32 w-32 rounded-xl border object-contain" *ngIf="previewData.paymentQrUrl" />
+        <div class="flex justify-center gap-4 text-lg text-gray-600">
+          <a *ngIf="profileForm.value.facebookUrl" [href]="profileForm.value.facebookUrl" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a *ngIf="profileForm.value.instagramUrl" [href]="profileForm.value.instagramUrl" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a *ngIf="profileForm.value.linkedinUrl" [href]="profileForm.value.linkedinUrl" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a *ngIf="profileForm.value.youtubeUrl" [href]="profileForm.value.youtubeUrl" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
     </div>
   </div>
+  
+  <style>
+    .input {
+      @apply w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400;
+    }
+    .btn-primary {
+      @apply px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700;
+    }
+    .error {
+      @apply text-red-500 text-sm mt-1;
+    }
+  </style>
   

@@ -33,6 +33,26 @@ public class BusinessProfile {
 
     private String publicUrl;
 
+    // BusinessProfile.java
+    @Column
+    private String tagline;
+
+    @Column
+    private String website;
+
+    @Column
+    private String whatsapp;
+
+    @Column
+    private String googleReviewUrl;
+
+    @Column
+    private String appDownloadLink;
+
+    @Column
+    private String paymentGatewayLink;
+
+
     @ManyToOne
     @JsonBackReference
     private User user;

@@ -1,0 +1,123 @@
+<div class="container" *ngIf="profile">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <img [src]="logo" alt="Logo" class="profile-logo" />
+      <h1 class="business-name">{{ profile.businessName }}</h1>
+      <p class="address">{{ profile.address }}</p>
+      <p *ngIf="profile.tagline" class="tagline">{{ profile.tagline }}</p>
+    </div>
+    
+    <!-- Contact Section -->
+    <div class="card-section" *ngIf="hasContact">
+      <div class="section-header">
+        <i class="fas fa-phone"></i>
+        <span>Contact Information</span>
+      </div>
+      <div class="contact-links">
+        <a *ngIf="profile.phone" [href]="'tel:' + profile.phone" class="contact-link">
+          <i class="fas fa-phone-alt"></i>
+          <span>Call</span>
+        </a>
+        <a *ngIf="profile.whatsapp" [href]="whatsappLink" target="_blank" class="contact-link">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a *ngIf="profile.email" [href]="'mailto:' + profile.email" class="contact-link">
+          <i class="fas fa-envelope"></i>
+          <span>Email</span>
+        </a>
+        <a *ngIf="profile.website" [href]="profile.website" target="_blank" class="contact-link">
+          <i class="fas fa-globe"></i>
+          <span>Website</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Social Section -->
+    <div class="card-section" *ngIf="hasSocialLinks">
+      <div class="section-header">
+        <i class="fas fa-share-alt"></i>
+        <span>Social Media</span>
+      </div>
+      <div class="social-links">
+        <a *ngIf="profile.facebookUrl" [href]="profile.facebookUrl" target="_blank" class="social-link facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a *ngIf="profile.instagramUrl" [href]="profile.instagramUrl" target="_blank" class="social-link instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a *ngIf="profile.linkedinUrl" [href]="profile.linkedinUrl" target="_blank" class="social-link linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a *ngIf="profile.youtubeUrl" [href]="profile.youtubeUrl" target="_blank" class="social-link youtube">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Google Review Section -->
+<div class="card-section">
+    <div class="section-header">
+      <i class="fab fa-google" style="color: #4285F4;"></i>
+      <span>Google Reviews</span>
+    </div>
+    <div class="google-review">
+      <div class="google-stars">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="rating-value">5.0</div>
+      <p class="review-count">Based on {{ profile.reviewCount || 0 }} reviews</p>
+      <a [href]="profile.googleReviewLink" target="_blank" class="review-button">
+        <i class="fas fa-star"></i>
+        Leave a Review
+      </a>
+    </div>
+  </div>
+    
+    <!-- Payment Section -->
+    <div class="card-section" *ngIf="profile.paymentQrUrl">
+      <div class="section-header">
+        <i class="fas fa-credit-card"></i>
+        <span>Payment Options</span>
+      </div>
+      <div class="payment-container">
+        <img [src]="profile.paymentQrUrl" alt="QR Code" class="qr-code" />
+        <a [href]="profile.paymentQrUrl" download class="download-link">Download QR Code</a>
+      </div>
+    </div>
+    
+    <!-- App Download Section -->
+    <div class="card-section" *ngIf="appLink">
+      <div class="section-header">
+        <i class="fas fa-mobile-alt"></i>
+        <span>Download Our App</span>
+      </div>
+      <div class="app-download">
+        <a [href]="appLink" target="_blank" class="app-button">
+          <i class="fas fa-download"></i>
+          Get Our App
+        </a>
+      </div>
+    </div>
+  
+    <!-- Footer -->
+    <div class="footer">
+      © {{ currentYear }} {{ profile.businessName }} | Digital Card
+    </div>
+  </div>
+  
+  <!-- Loading State -->
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading profile...</p>
+  </div>
+  
+  <!-- Error State -->
+  <div class="error-container" *ngIf="error">
+    <i class="fas fa-exclamation-triangle"></i>
+    <p>{{ error }}</p>
+  </div>
