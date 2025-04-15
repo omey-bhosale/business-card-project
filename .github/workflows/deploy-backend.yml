@@ -34,13 +34,12 @@ jobs:
         source: business-card-backend/target/*.jar
         target: /home/ubuntu/app
 
-     - name: 🚀 Restart Spring Boot on EC2
-       uses: appleboy/ssh-action@v1.0.0
-       with:
+    - name: 🚀 Restart Spring Boot on EC2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
         host: ${{ secrets.EC2_HOST }}
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-        pkill -f 'java' || true
-        tmux new-session -d -s backend "java -jar /home/ubuntu/app/*.jar > /home/ubuntu/app/log.txt 2>&1"
-      
+          pkill -f 'java' || true
+          tmux new-session -d -s backend "java -jar /home/ubuntu/app/*.jar > /home/ubuntu/app/log.txt 2>&1"
