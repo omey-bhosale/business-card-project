@@ -1,4 +1,4 @@
-name: Deploy Angular to S3
+name: Deploy Angular App to S3
 
 on:
   push:
@@ -10,31 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Source
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Set up Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Install Dependencies
-      run: npm install
-      working-directory: business-card-app
+      - name: Install Dependencies
+        working-directory: business-profile-app
+        run: npm install
 
+      - name: 🔨 Build Angular App
+        working-directory: business-profile-app
+        run: npm run build -- --configuration production
 
-    - name: Build Angular App
-      run: npm run build -- --configuration production
-      working-directory: business-card-app
-
-    - name: Sync to S3 Bucket
-      uses: jakejarvis/s3-sync-action@v0.5.1
-      with:
-        args: --acl public-read --delete
-      env:
-        AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ secrets.AWS_REGION }}
-        SOURCE_DIR: business-card-app/dist/business-card-app
-
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          SOURCE_DIR: business-profile-app/dist/business-profile-app
