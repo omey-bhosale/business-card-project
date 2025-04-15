@@ -20,12 +20,12 @@ jobs:
 
     - name: Install Dependencies
       run: npm install
-      working-directory: ./business-card-app
+      working-directory: business-card-app
 
 
     - name: Build Angular App
       run: npm run build -- --configuration production
-      working-directory: ./business-card-app
+      working-directory: business-card-app
 
     - name: Sync to S3 Bucket
       uses: jakejarvis/s3-sync-action@v0.5.1
@@ -37,3 +37,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
         SOURCE_DIR: business-card-app/dist/business-card-app
+
