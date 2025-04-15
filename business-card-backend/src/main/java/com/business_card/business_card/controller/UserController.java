@@ -23,7 +23,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:4200") // Angular frontend URL
+@CrossOrigin(origins = "business-card-db.cz2ia8eom4vr.ap-south-1.rds.amazonaws.com")
 public class UserController {
     @Autowired
     private UserService userService;

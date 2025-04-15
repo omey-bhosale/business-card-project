@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environment/environment.prod';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,6 +14,7 @@ export class SignUpComponent {
   otpVerified = false;
   errorMessage = '';
   successMessage = '';
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private fb: FormBuilder,
@@ -91,14 +93,14 @@ export class SignUpComponent {
           this.auth.saveToken(res.token);
           this.successMessage = 'Registration successful!';
           this.errorMessage = '';
-                      this.router.navigate(['/dashboard']); // route after login
-                    },
-                    error: (err) => {
-                      this.errorMessage = 'Registration failed';
-                      this.successMessage = '';
-                      console.error(err);
-                    }
-                  });
-                }
-              }
-            }
+          this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          this.errorMessage = 'Registration failed';
+          this.successMessage = '';
+          console.error(err);
+        }
+      });
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environment/environment.prod';
 
 @Component({
   selector: 'app-create-profile',
@@ -12,7 +13,7 @@ export class CreateProfileComponent {
   profileForm: FormGroup;
   previewData: any = null;
   defaultLogo: string = 'https://via.placeholder.com/100x100.png?text=Logo';
-
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private fb: FormBuilder,
@@ -60,7 +61,7 @@ export class CreateProfileComponent {
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.auth.getToken()}`);
 
-    this.http.post<any>('http://localhost:8080/api/users/upload', formData, { headers }).subscribe({
+    this.http.post<any>(`${this.apiUrl}/users/upload`, formData, { headers }).subscribe({
       next: (res) => {
         const controlName = type === 'logo' ? 'logoUrl' : 'paymentQrUrl';
         this.profileForm.get(controlName)?.setValue(res.url);
@@ -84,7 +85,7 @@ export class CreateProfileComponent {
     const token = this.auth.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.post('http://localhost:8080/api/profiles', this.profileForm.value, { headers }).subscribe({
+    this.http.post(`${this.apiUrl}/profiles`, this.profileForm.value, { headers }).subscribe({
       next: () => {
         alert('Profile created!');
         this.router.navigate(['/dashboard']);

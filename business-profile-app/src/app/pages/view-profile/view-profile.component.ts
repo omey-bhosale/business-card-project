@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environment/environment.prod';
 
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
-  styleUrls: ['./view-profile.component.scss'] 
+  styleUrls: ['./view-profile.component.scss']
 })
 export class ViewProfileComponent implements OnInit {
   profile: any = null;
   loading: boolean = true;
   error: string = '';
   defaultLogo = 'https://ui-avatars.com/api/?name=Business&background=random';
-currentYear: number = new Date().getFullYear();
+  currentYear: number = new Date().getFullYear();
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,13 +32,13 @@ currentYear: number = new Date().getFullYear();
     const token = this.auth.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get<any>(`http://localhost:8080/api/profiles/${id}`, { headers }).subscribe({
+    this.http.get<any>(`${this.apiUrl}/profiles/${id}`, { headers }).subscribe({
       next: (res) => {
         this.profile = res;
         this.loading = false;
       },
       error: (err) => {
-        console.error('❌ Error loading profile', err);
+        console.error('Error loading profile', err);
         this.error = 'Profile not found or you are not authorized.';
         this.loading = false;
       }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environment/environment.prod';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class DashboardComponent implements OnInit {
   profiles: any[] = [];
   loading = true;
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) {}
 
@@ -21,7 +23,7 @@ export class DashboardComponent implements OnInit {
     const token = this.auth.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get<any[]>('http://localhost:8080/api/profiles', { headers }).subscribe({
+    this.http.get<any[]>(`${this.apiUrl}/profiles`, { headers }).subscribe({
       next: (res) => {
         this.profiles = res;
         this.loading = false;
