@@ -22,7 +22,7 @@ jobs:
         working-directory: business-profile-app
         run: npm install
 
-      - name: 🔨 Build Angular App
+      - name: Build Angular App
         working-directory: business-profile-app
         run: npm run build -- --configuration production
 
@@ -31,7 +31,7 @@ jobs:
         with:
           args: --delete
         env:
-          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
