@@ -5,6 +5,7 @@ import com.business_card.business_card.dto.OtpLoginRequest;
 import com.business_card.business_card.model.User;
 import com.business_card.business_card.repository.UserRepository;
 import com.business_card.business_card.service.FileUploadService;
+import com.business_card.business_card.service.S3Service;
 import com.business_card.business_card.service.UserService;
 import com.business_card.business_card.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class UserController {
 
     @Autowired
     private FileUploadService fileUploadService;
+
+    @Autowired
+    private S3Service s3Service;
 
 
     @PostMapping("/send-otp")
@@ -91,36 +95,48 @@ public class UserController {
     }
 
 
+//    @PostMapping("/upload")
+//    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
+//        try {
+//            System.out.println("Upload attempt: " + file.getOriginalFilename());
+//
+//            // Absolute path for safety
+//            String uploadDirPath = new File("uploads").getAbsolutePath();
+//            File uploadDir = new File(uploadDirPath);
+//            System.out.println("Upload dir: " + uploadDirPath);
+//
+//            // Ensure directory exists
+//            if (!uploadDir.exists()) {
+//                boolean created = uploadDir.mkdirs();
+//                System.out.println("Directory created: " + created);
+//            }
+//
+//            // Generate unique filename
+//            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+//            File dest = new File(uploadDir, filename);
+//            System.out.println("💾 Saving to: " + dest.getAbsolutePath());
+//
+//            file.transferTo(dest);
+//
+//            String fileUrl = "http://buisness-card-app.s3-website.ap-south-1.amazonaws.com/" + filename;
+//            System.out.println("File saved! URL: " + fileUrl);
+//            return ResponseEntity.ok(Map.of("url", fileUrl));
+//
+//        } catch (Exception e) {
+//            e.printStackTrace(); // Print full stack trace
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Upload failed: " + e.getMessage()));
+//        }
+//    }
+
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            System.out.println("Upload attempt: " + file.getOriginalFilename());
-
-            // Absolute path for safety
-            String uploadDirPath = new File("uploads").getAbsolutePath();
-            File uploadDir = new File(uploadDirPath);
-            System.out.println("Upload dir: " + uploadDirPath);
-
-            // Ensure directory exists
-            if (!uploadDir.exists()) {
-                boolean created = uploadDir.mkdirs();
-                System.out.println("Directory created: " + created);
-            }
-
-            // Generate unique filename
-            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
-            File dest = new File(uploadDir, filename);
-            System.out.println("💾 Saving to: " + dest.getAbsolutePath());
-
-            file.transferTo(dest);
-
-            String fileUrl = "http://buisness-card-app.s3-website.ap-south-1.amazonaws.com/" + filename;
-            System.out.println("File saved! URL: " + fileUrl);
-            return ResponseEntity.ok(Map.of("url", fileUrl));
-
+            String url = s3Service.uploadFile(file);
+            return ResponseEntity.ok(Map.of("url", url));
         } catch (Exception e) {
-            e.printStackTrace(); // Print full stack trace
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Upload failed: " + e.getMessage()));
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Upload failed"));
         }
     }
 
