@@ -90,5 +90,6 @@ public class SecurityConfig {
         bean.setOrder(0); // Ensure this runs before Spring Security filter chain
         return bean;
     }
+
 }
 
