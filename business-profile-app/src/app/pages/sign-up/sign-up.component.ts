@@ -36,7 +36,7 @@ export class SignUpComponent {
     const phone = this.signUpForm.get('phone')?.value;
     if (!phone) return;
 
-    this.http.post(`${this.apiUrl}/send-otp?phone=${phone}`, {}).subscribe({
+    this.http.post(`${this.apiUrl}/users/send-otp?phone=${phone}`, {}).subscribe({
       next: () => {
         this.otpSent = true;
         this.successMessage = 'OTP sent to your phone!';
@@ -60,7 +60,7 @@ export class SignUpComponent {
       return;
     }
 
-    this.http.post(`${this.apiUrl}/verify-otp?phone=${phone}&otp=${otp}`, {}).subscribe({
+    this.http.post(`${this.apiUrl}/users/verify-otp?phone=${phone}&otp=${otp}`, {}).subscribe({
       next: (res: any) => {
         if (res.verified === true || res === true) {
           this.otpVerified = true;
@@ -90,7 +90,7 @@ export class SignUpComponent {
       const { name, email, phone, password } = this.signUpForm.value;
       const payload = { name, email, phone, password };
 
-      this.http.post<any>(`${this.apiUrl}/register`, payload).subscribe({
+      this.http.post<any>(`${this.apiUrl}/users/register`, payload).subscribe({
         next: (res) => {
           this.auth.saveToken(res.token);
           this.successMessage = 'Registration successful!';

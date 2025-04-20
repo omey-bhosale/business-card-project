@@ -30,7 +30,7 @@ export class SignInComponent {
     if (this.signInForm.valid) {
       const { email, password } = this.signInForm.value;
 
-      this.http.post<any>(`${this.apiUrl}/login-email`, { email, password }).subscribe({
+      this.http.post<any>(`${this.apiUrl}/users/login-email`, { email, password }).subscribe({
         next: (res) => {
           this.auth.saveToken(res.token);
           console.log('Login successful:', res);

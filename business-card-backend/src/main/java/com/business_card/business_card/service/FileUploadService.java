@@ -37,7 +37,7 @@ public class FileUploadService {
         File dest = new File(uploadPath + filename);
         file.transferTo(dest);
 
-        return "http://localhost:8080/uploads/" + filename;
+        return "http://buisness-card-app.s3-website.ap-south-1.amazonaws.com/" + filename;
     }
 }
 

@@ -61,7 +61,7 @@ export class CreateProfileComponent {
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.auth.getToken()}`);
 
-    this.http.post<any>(`${this.apiUrl}/users/upload`, formData, { headers }).subscribe({
+    this.http.post<any>(`${this.apiUrl}/upload`, formData, { headers }).subscribe({
       next: (res) => {
         const controlName = type === 'logo' ? 'logoUrl' : 'paymentQrUrl';
         this.profileForm.get(controlName)?.setValue(res.url);

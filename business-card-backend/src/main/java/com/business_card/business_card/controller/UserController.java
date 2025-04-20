@@ -90,55 +90,21 @@ public class UserController {
                 });
     }
 
-//    @PostMapping("/upload")
-//    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-//        System.out.println("📦 File name: " + file.getOriginalFilename());
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        System.out.println("🔐 Upload Auth = " + auth);
-//
-//        if (auth == null || !auth.isAuthenticated()) {
-//            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Unauthorized");
-//        }
-//
-//        try {
-//            String url = fileUploadService.uploadFile(file);
-//            return ResponseEntity.ok(Map.of("url", url));
-//        } catch (IllegalArgumentException e) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Upload failed"));
-//        }
-//    }
-
-//    @PostMapping("/upload")
-//    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-//        System.out.println("📦 File name: " + file.getOriginalFilename());
-//
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        System.out.println("🔐 Upload Auth = " + auth);
-//
-//        if (auth == null || !auth.isAuthenticated()) {
-//            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Unauthorized");
-//        }
-//
-//        // Save logic here
-//        return ResponseEntity.ok(Map.of("url", "http://localhost:8080/uploads/" + file.getOriginalFilename()));
-//    }
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            System.out.println("📥 Upload attempt: " + file.getOriginalFilename());
+            System.out.println("Upload attempt: " + file.getOriginalFilename());
 
             // Absolute path for safety
             String uploadDirPath = new File("uploads").getAbsolutePath();
             File uploadDir = new File(uploadDirPath);
-            System.out.println("📂 Upload dir: " + uploadDirPath);
+            System.out.println("Upload dir: " + uploadDirPath);
 
             // Ensure directory exists
             if (!uploadDir.exists()) {
                 boolean created = uploadDir.mkdirs();
-                System.out.println("📁 Directory created: " + created);
+                System.out.println("Directory created: " + created);
             }
 
             // Generate unique filename
@@ -148,8 +114,8 @@ public class UserController {
 
             file.transferTo(dest);
 
-            String fileUrl = "http://localhost:8080/uploads/" + filename;
-            System.out.println("✅ File saved! URL: " + fileUrl);
+            String fileUrl = "http://buisness-card-app.s3-website.ap-south-1.amazonaws.com/" + filename;
+            System.out.println("File saved! URL: " + fileUrl);
             return ResponseEntity.ok(Map.of("url", fileUrl));
 
         } catch (Exception e) {
