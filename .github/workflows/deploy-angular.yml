@@ -1,9 +1,11 @@
-name: Deploy Angular App to S3
+name: 🚀 Deploy Angular App to S3
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'business-profile-app/**'  # only when frontend changes
 
 jobs:
   build-and-deploy:
@@ -35,5 +37,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_DIR: business-profile-app/dist/business-profile-app 
-
+          SOURCE_DIR: business-profile-app/dist/business-profile-app  # ✅ no /browser
