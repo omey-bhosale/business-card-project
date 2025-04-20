@@ -44,18 +44,18 @@ public class SecurityConfig {
                         .requestMatchers("/uploads/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                // ✅ Must allow multipart for Spring Security
+                // Must allow multipart for Spring Security
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
 
-    // ✅ Define CORS configuration explicitly
+    // Define CORS configuration explicitly
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://buisness-card-app.s3-website.ap-south-1.amazonaws.com","http://localhost:4200"));
+        config.setAllowedOrigins(List.of("http://buisness-card-app.s3-website.ap-south-1.amazonaws.com", "http://localhost:4200"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
@@ -79,7 +79,8 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:4200","http://buisness-card-app.s3-website.ap-south-1.amazonaws.com");
+        config.addAllowedOrigin("http://buisness-card-app.s3-website.ap-south-1.amazonaws.com");
+        config.addAllowedOrigin("http://localhost:4200");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
