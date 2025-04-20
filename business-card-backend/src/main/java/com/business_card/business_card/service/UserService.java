@@ -25,7 +25,7 @@ public class UserService {
         User user = userRepository.findByPhone(phone).orElseGet(() ->
                 User.builder()
                         .phone(phone)
-                        .isVerified(false)  // login may not need verified flag
+                        .isVerified(false)
                         .build()
         );
 
