@@ -69,6 +69,7 @@ export class CreateProfileComponent {
       error: (err) => {
         console.error('Upload failed:', err);
         alert('Upload failed. Check console.');
+        
       }
     });
   }
