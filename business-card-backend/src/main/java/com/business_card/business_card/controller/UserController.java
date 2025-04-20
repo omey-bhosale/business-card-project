@@ -23,7 +23,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = { "http://buisness-card-app.s3-website.ap-south-1.amazonaws.com","http://localhost:4200"})
+//@CrossOrigin(origins = { "http://buisness-card-app.s3-website.ap-south-1.amazonaws.com","http://localhost:4200"})
 public class UserController {
     @Autowired
     private UserService userService;

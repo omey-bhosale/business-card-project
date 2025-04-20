@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/profiles")
-@CrossOrigin(origins = { "http://buisness-card-app.s3-website.ap-south-1.amazonaws.com","http://localhost:4200"})
+//@CrossOrigin(origins = { "http://buisness-card-app.s3-website.ap-south-1.amazonaws.com","http://localhost:4200"})
 public class BusinessProfileController {
 
     @Autowired
