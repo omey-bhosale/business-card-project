@@ -44,35 +44,37 @@ export class CreateProfileComponent {
 
   onFileSelected(event: any, type: 'logo' | 'qr') {
     const file = event.target.files[0];
-
+  
     if (!file) return;
     if (!['image/png', 'image/jpeg'].includes(file.type)) {
       alert('Only JPG and PNG files are allowed.');
       return;
     }
-
+  
     if (file.size > 2 * 1024 * 1024) {
       alert('File size must be under 2MB.');
       return;
     }
-
+  
     const formData = new FormData();
     formData.append('file', file);
-
+  
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.auth.getToken()}`);
-
-    this.http.post<any>(`${this.apiUrl}/users/upload`, formData, { headers }).subscribe({
+    const uploadUrl = `${this.apiUrl}/users/upload`;
+  
+    this.http.post<any>(uploadUrl, formData, { headers }).subscribe({
       next: (res) => {
         const controlName = type === 'logo' ? 'logoUrl' : 'paymentQrUrl';
-        this.profileForm.get(controlName)?.setValue(res.url);
+        const imageUrl = res?.url?.startsWith('http') ? res.url : `${this.apiUrl}/${res.url}`;
+        this.profileForm.get(controlName)?.setValue(imageUrl);
       },
       error: (err) => {
-        console.error('Upload failed:', err);
-        alert('Upload failed. Check console.');
-        
+        console.error(`Upload failed for ${type}:`, err);
+        alert(`${type === 'logo' ? 'Logo' : 'QR'} upload failed. Check console.`);
       }
     });
   }
+  
 
   preview() {
     if (this.profileForm.valid) {
