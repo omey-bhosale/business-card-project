@@ -55,7 +55,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("business-card-db.cz2ia8eom4vr.ap-south-1.rds.amazonaws.com")); // ✅ your frontend
+        config.setAllowedOrigins(List.of("http://buisness-card-app.s3-website.ap-south-1.amazonaws.com","http://localhost:4200"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
@@ -79,7 +79,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedOrigin("http://localhost:4200","http://buisness-card-app.s3-website.ap-south-1.amazonaws.com");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 

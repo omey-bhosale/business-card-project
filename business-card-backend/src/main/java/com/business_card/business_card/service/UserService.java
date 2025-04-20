@@ -32,7 +32,7 @@ public class UserService {
         user.setOtp(otp);
         userRepository.save(user);
 
-        System.out.println("✅ OTP for " + phone + ": " + otp); // dev only
+        System.out.println("OTP for " + phone + ": " + otp); // dev only
         return otp;
     }
 
@@ -76,20 +76,20 @@ public class UserService {
     public Optional<User> loginWithOtp(String phone, String otp) {
         Optional<User> userOpt = userRepository.findByPhone(phone);
         if (userOpt.isEmpty()) {
-            System.out.println("❌ Phone not found: " + phone);
+            System.out.println("Phone not found: " + phone);
             return Optional.empty();
         }
 
         User user = userOpt.get();
-        System.out.println("✅ Found user: " + user.getPhone() + ", OTP in DB: " + user.getOtp());
+        System.out.println("Found user: " + user.getPhone() + ", OTP in DB: " + user.getOtp());
 
         if (!user.isVerified()) {
-            System.out.println("❌ User not verified");
+            System.out.println("User not verified");
             return Optional.empty();
         }
 
         if (!otp.equals(user.getOtp())) {
-            System.out.println("❌ OTP mismatch: received " + otp);
+            System.out.println("OTP mismatch: received " + otp);
             return Optional.empty();
         }
 
