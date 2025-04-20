@@ -47,7 +47,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://buisness-card-app.s3-website.ap-south-1.amazonaws.com")); // ✅ exact match
+        config.setAllowedOrigins(List.of("http://buisness-card-app.s3-website.ap-south-1.amazonaws.com")); //exact match
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true); // required for cookies/authorization
