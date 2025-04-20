@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment.prod';
 
 @Component({
@@ -19,7 +20,8 @@ export class SignUpComponent {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     this.signUpForm = this.fb.group({
       name: ['', Validators.required],
@@ -34,7 +36,7 @@ export class SignUpComponent {
     const phone = this.signUpForm.get('phone')?.value;
     if (!phone) return;
 
-    this.auth.sendOtp(phone).subscribe({
+    this.http.post(`${this.apiUrl}/send-otp?phone=${phone}`, {}).subscribe({
       next: () => {
         this.otpSent = true;
         this.successMessage = 'OTP sent to your phone!';
@@ -58,7 +60,7 @@ export class SignUpComponent {
       return;
     }
 
-    this.auth.verifyOtp(phone, otp).subscribe({
+    this.http.post(`${this.apiUrl}/verify-otp?phone=${phone}&otp=${otp}`, {}).subscribe({
       next: (res: any) => {
         if (res.verified === true || res === true) {
           this.otpVerified = true;
@@ -88,8 +90,8 @@ export class SignUpComponent {
       const { name, email, phone, password } = this.signUpForm.value;
       const payload = { name, email, phone, password };
 
-      this.auth.register(payload).subscribe({
-        next: (res: any) => {
+      this.http.post<any>(`${this.apiUrl}/register`, payload).subscribe({
+        next: (res) => {
           this.auth.saveToken(res.token);
           this.successMessage = 'Registration successful!';
           this.errorMessage = '';
