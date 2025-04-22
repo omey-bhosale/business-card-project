@@ -1,0 +1,432 @@
+
+<body class="gradient-bg">
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+  
+  <div class="content-wrapper">
+    <!-- Navigation -->
+    <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
+      <div class="flex items-center">
+        <i class="fas fa-bezier-curve text-3xl gradient-text mr-2"></i>
+        <span class="text-2xl font-bold gradient-text">LinkHive</span>
+      </div>
+      <div class="hidden md:flex space-x-8">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <!-- <a href="#testimonials" class="nav-link">Testimonials</a> -->
+      </div>
+      <div>
+        <a routerLink="/sign-up" class="bg-gradient-to-r from-purple-600 to-blue-500 text-white px-6 py-2 rounded-full font-medium btn-glow">Get Started</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-6 py-20 md:py-32 text-center relative">
+      <div class="absolute -top-20 -left-20 w-64 h-64 bg-purple-900 rounded-full filter blur-3xl opacity-20"></div>
+      <div class="absolute bottom-0 right-0 w-64 h-64 bg-blue-900 rounded-full filter blur-3xl opacity-20"></div>
+      
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <span class="gradient-text glow">Your Business Identity</span><br>
+          <span class="text-white">In One Smart Card</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
+          Unify your online presence with a futuristic NFC-powered profile. Share everything with just a tap—website, socials, maps, and reviews—all in one place.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a routerLink="/sign-up" class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-blue-500 hover:to-purple-600 text-white font-bold px-8 py-4 rounded-full shadow-xl transition-all btn-glow">
+            Claim Your Free Digital Card <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+          <a href="#demo" class="border-2 border-purple-500 text-white font-bold px-8 py-4 rounded-full shadow-xl transition-all hover:bg-purple-900/30">
+            See Live Demo <i class="fas fa-play-circle ml-2"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- 3D NFC Card Animation -->
+      <div class="mt-20 mx-auto w-full max-w-md relative">
+        <div class="nfc-card w-full h-64 mx-auto">
+          <div class="nfc-card-inner w-full h-full relative">
+            <div class="nfc-card-front gradient-border bg-gray-900/50 backdrop-blur-md rounded-2xl p-6 flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg mb-4"></div>
+                  <h3 class="text-xl font-bold">Your Business</h3>
+                  <p class="text-gray-400 text-sm">Tap to connect</p>
+                </div>
+                <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-wifi text-white text-2xl"></i>
+                </div>
+              </div>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-map-marker-alt text-purple-400 mr-2"></i>
+                  <span class="text-sm">Location, City</span>
+                </div>
+                <div class="flex space-x-2">
+                  <i class="fab fa-instagram text-pink-500"></i>
+                  <i class="fab fa-facebook text-blue-400"></i>
+                  <i class="fab fa-whatsapp text-green-400"></i>
+                </div>
+              </div>
+            </div>
+            <div class="nfc-card-back gradient-border bg-gray-900/50 backdrop-blur-md rounded-2xl p-6 flex flex-col justify-between">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <i class="fas fa-link text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Your Digital Profile</h3>
+                <p class="text-gray-400 text-sm mb-4">Scan or tap to view all my links</p>
+                <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-purple-600 to-blue-500 rounded-full w-3/4"></div>
+                </div>
+              </div>
+              <div class="text-center text-xs text-gray-500">
+                Powered by LinkHive
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-600 rounded-full filter blur-xl opacity-10"></div>
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-600 rounded-full filter blur-xl opacity-10"></div>
+      </div>
+    </section>
+
+    <!-- Logo Cloud -->
+    <!-- <section class="container mx-auto px-6 py-12">
+      <div class="text-center mb-12">
+        <p class="text-gray-400 uppercase tracking-wider text-sm mb-2">Trusted by businesses worldwide</p>
+      </div>
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80">
+        <i class="fab fa-google text-4xl text-red-500"></i>
+        <i class="fab fa-instagram text-4xl text-pink-500"></i>
+        <i class="fab fa-facebook text-4xl text-blue-400"></i>
+        <i class="fab fa-whatsapp text-4xl text-green-500"></i>
+        <i class="fab fa-yelp text-4xl text-red-400"></i>
+        <i class="fab fa-tripadvisor text-4xl text-green-400"></i>
+      </div>
+    </section> -->
+
+    <!-- Features Section -->
+    <section id="features" class="container mx-auto px-6 py-20">
+      <div class="text-center mb-20 fade-in" appFadeInOnScroll>
+        <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">Transform Your Business Presence</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">LinkHive combines all your digital touchpoints into one elegant, interactive profile that grows with your business.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Feature 1 -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in" appFadeInOnScroll>
+          <div class="feature-icon mb-6">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Unified Digital Identity</h3>
+          <p class="text-gray-300">Combine your website, social media, contact info, and more into one beautiful, branded profile that represents your business perfectly.</p>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in" appFadeInOnScroll>
+          <div class="feature-icon mb-6">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Google Maps Integration</h3>
+          <p class="text-gray-300">Show your location with embedded Google Maps and display your Google reviews to build instant trust with customers.</p>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in" appFadeInOnScroll>
+          <div class="feature-icon mb-6">
+            <i class="fas fa-chart-network"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Smart Analytics</h3>
+          <p class="text-gray-300">Track visits, clicks, and engagement to understand what's working and optimize your digital presence.</p>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in" appFadeInOnScroll>
+          <div class="feature-icon mb-6">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">NFC & QR Technology</h3>
+          <p class="text-gray-300">Share your profile instantly with a tap of our NFC card or a quick QR scan—no apps or technical knowledge required.</p>
+        </div>
+        
+        <!-- Feature 5 -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in" appFadeInOnScroll>
+          <div class="feature-icon mb-6">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Custom Branding</h3>
+          <p class="text-gray-300">Match your profile to your brand with custom colors, fonts, and layouts that reflect your unique identity.</p>
+        </div>
+        
+        <!-- Feature 6 -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in" appFadeInOnScroll>
+          <div class="feature-icon mb-6">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Instant Updates</h3>
+          <p class="text-gray-300">Change your information anytime—your NFC card stays the same while your profile always shows your latest details.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="container mx-auto px-6 py-20 bg-gradient-to-b from-gray-900/50 to-transparent">
+      <div class="text-center mb-20 fade-in" appFadeInOnScroll>
+        <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">How LinkHive Works</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Get your smart digital business card in just 3 simple steps</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+        <!-- Step 1 -->
+        <div class="text-center fade-in" appFadeInOnScroll>
+          <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">1</div>
+          <h3 class="text-xl font-bold mb-3">Create Your Profile</h3>
+          <p class="text-gray-300">Add your business details, links, and branding in our easy-to-use dashboard.</p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="text-center fade-in" appFadeInOnScroll>
+          <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">2</div>
+          <h3 class="text-xl font-bold mb-3">Order Your NFC Card</h3>
+          <p class="text-gray-300">Choose from our premium card designs or create a custom one that matches your brand.</p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="text-center fade-in" appFadeInOnScroll>
+          <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">3</div>
+          <h3 class="text-xl font-bold mb-3">Share With The World</h3>
+          <p class="text-gray-300">Tap, scan, or share your link to connect customers to everything you offer.</p>
+        </div>
+      </div>
+      
+      <!-- Demo Video -->
+      <div class="mt-20 max-w-4xl mx-auto gradient-border rounded-2xl overflow-hidden fade-in" appFadeInOnScroll>
+        <div class="aspect-w-16 aspect-h-9 bg-gray-800 flex items-center justify-center">
+          <div class="text-center p-10">
+            <i class="fas fa-play-circle text-6xl text-purple-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">See LinkHive in Action</h3>
+            <p class="text-gray-400">Watch our 1-minute demo to see how it works</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="container mx-auto px-6 py-20">
+      <div class="text-center mb-20 fade-in" appFadeInOnScroll>
+        <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Choose the plan that fits your business needs</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Free Plan -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in" appFadeInOnScroll>
+          <h3 class="text-xl font-bold mb-2">Starter</h3>
+          <p class="text-gray-400 mb-6">Perfect for trying out LinkHive</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">Free</span>
+            <span class="text-gray-400">/forever</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Basic Profile</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> QR Code Sharing</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Google Maps Integration</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Social Media Links</li>
+            <li class="flex items-center"><i class="fas fa-times text-gray-600 mr-2"></i> <span class="text-gray-600">Advanced Analytics</span></li>
+            <li class="flex items-center"><i class="fas fa-times text-gray-600 mr-2"></i> <span class="text-gray-600">Custom Branding</span></li>
+          </ul>
+          <a href="#signup" class="block text-center bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 rounded-lg transition">Get Started</a>
+        </div>
+        
+        <!-- Pro Plan -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in transform scale-105 relative" appFadeInOnScroll>
+          <div class="absolute top-0 right-0 bg-gradient-to-r from-purple-600 to-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
+          <h3 class="text-xl font-bold mb-2">Professional</h3>
+          <p class="text-gray-400 mb-6">For growing businesses</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">$9</span>
+            <span class="text-gray-400">/month</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Everything in Free</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> NFC Card Support</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Basic Analytics</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Custom Branding</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Google Reviews Display</li>
+            <li class="flex items-center"><i class="fas fa-times text-gray-600 mr-2"></i> <span class="text-gray-600">Advanced Analytics</span></li>
+          </ul>
+          <a href="#signup" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-blue-500 hover:to-purple-600 text-white font-medium py-3 rounded-lg transition btn-glow">Upgrade Now</a>
+        </div>
+        
+        <!-- Business Plan -->
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in" appFadeInOnScroll>
+          <h3 class="text-xl font-bold mb-2">Business</h3>
+          <p class="text-gray-400 mb-6">For serious businesses</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold">$29</span>
+            <span class="text-gray-400">/month</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Everything in Pro</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Advanced Analytics</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Competitor Comparison</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Custom Domain</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Priority Support</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> White Label Options</li>
+          </ul>
+          <a href="#signup" class="block text-center bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 rounded-lg transition">Get Business</a>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12 text-gray-400 fade-in" appFadeInOnScroll>
+        <p>Need a custom plan for your team? <a href="#contact" class="text-purple-400 hover:underline">Contact us</a></p>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <!-- <section id="testimonials" class="container mx-auto px-6 py-20 bg-gradient-to-b from-gray-900/50 to-transparent">
+      <div class="text-center mb-20 fade-in">
+        <h2 class="section-title text-3xl md:text-4xl font-bold mb-4">What Our Customers Say</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Join thousands of businesses who transformed their digital presence</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        Testimonial 1
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">JD</div>
+            <div>
+              <h4 class="font-bold">Ravindra Shinde</h4>
+              <p class="text-gray-400 text-sm">Cafe Owner</p>
+            </div>
+          </div>
+          <div class="flex mb-2 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-300">"LinkHive completely transformed how customers interact with my cafe. The Google Maps and reviews integration brought in 30% more foot traffic!"</p>
+        </div>
+        
+        Testimonial 2
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">AS</div>
+            <div>
+              <h4 class="font-bold">Omkar Bhosale</h4>
+              <p class="text-gray-400 text-sm">Freelance Developer</p>
+            </div>
+          </div>
+          <div class="flex mb-2 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-300">"As a freelancer, first impressions are everything. My NFC card makes sharing my portfolio seamless and professional. Clients love it!"</p>
+        </div>
+        
+        Testimonial 3
+        <div class="gradient-border bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl card-hover fade-in">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">RJ</div>
+            <div>
+              <h4 class="font-bold">Robert Johnson</h4>
+              <p class="text-gray-400 text-sm">Real Estate Agent</p>
+            </div>
+          </div>
+          <div class="flex mb-2 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="text-gray-300">"The analytics helped me understand which listings get the most attention. This data is gold for my business strategy."</p>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- CTA Section -->
+    <section id="signup" class="container mx-auto px-6 py-32 text-center relative overflow-hidden">
+      <div class="absolute -top-1/2 -left-1/4 w-full h-full bg-gradient-to-r from-purple-900/10 to-blue-900/10 rounded-full filter blur-3xl rotate-45"></div>
+      <div class="absolute -bottom-1/2 -right-1/4 w-full h-full bg-gradient-to-r from-blue-900/10 to-purple-900/10 rounded-full filter blur-3xl -rotate-45"></div>
+      
+      <div class="relative max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-bold mb-6">Ready to Elevate Your Digital Presence?</h2>
+        <p class="text-xl text-gray-300 mb-10">Join thousands of businesses using LinkHive to simplify connections and grow their brand.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#signup" class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-blue-500 hover:to-purple-600 text-white font-bold px-8 py-4 rounded-full shadow-xl transition-all btn-glow">
+            Get Started Free <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+          <a href="#demo" class="border-2 border-purple-500 text-white font-bold px-8 py-4 rounded-full shadow-xl transition-all hover:bg-purple-900/30">
+            Book a Demo <i class="fas fa-calendar-alt ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="container mx-auto px-6 py-12 border-t border-gray-800">
+      <div class="grid md:grid-cols-4 gap-10">
+        <div>
+          <div class="flex items-center mb-4">
+            <i class="fas fa-bezier-curve text-2xl gradient-text mr-2"></i>
+            <span class="text-xl font-bold gradient-text">LinkHive</span>
+          </div>
+          <p class="text-gray-400">The smart digital identity layer for modern businesses.</p>
+          <div class="flex space-x-4 mt-6">
+            <a href="#"><i class="fab fa-twitter text-xl text-gray-400 hover:text-purple-400"></i></a>
+            <a href="#"><i class="fab fa-facebook text-xl text-gray-400 hover:text-purple-400"></i></a>
+            <a href="#"><i class="fab fa-instagram text-xl text-gray-400 hover:text-purple-400"></i></a>
+            <a href="#"><i class="fab fa-linkedin text-xl text-gray-400 hover:text-purple-400"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-4">Product</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Features</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Pricing</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Examples</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Updates</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-4">Resources</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Guides</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Help Center</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">API Docs</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-bold mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">About Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Careers</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Contact</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-purple-400">Legal</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm">© 2023 LinkHive. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-500 hover:text-purple-400 text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-purple-400 text-sm">Terms of Service</a>
+          <a href="#" class="text-gray-500 hover:text-purple-400 text-sm">Cookies</a>
+        </div>
+          </div>
+        </footer>
+  

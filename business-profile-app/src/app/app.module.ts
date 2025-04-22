@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateProfileComponent } from './pages/create-profile/create-profile.component';
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { FadeInOnScrollDirective } from './landing-page/fade-in-on-scroll.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ViewProfileComponent } from './pages/view-profile/view-profile.componen
     SignInComponent,
     DashboardComponent,
     CreateProfileComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    LandingPageComponent,
+    FadeInOnScrollDirective
   ],
   imports: [
     BrowserModule,
