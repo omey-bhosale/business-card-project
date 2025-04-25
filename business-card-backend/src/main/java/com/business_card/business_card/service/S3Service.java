@@ -29,8 +29,7 @@ public class S3Service {
 
     public String uploadFile(MultipartFile file) throws IOException {
         String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
-        String key = "uploads/" + filename; // Store in uploads folder
-
+        String key = "uploads/" + filename; // Store in uploads folders
         S3Client s3 = S3Client.builder()
                 .region(Region.of(region))
                 .credentialsProvider(StaticCredentialsProvider.create(
